@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import CategoryView, FoodView, OrderView
+from .views import CategoryAPIView, FoodAPIView, CommentAPIView
 
 urlpatterns = [
-    path('categories/', CategoryView.as_view(), name='categories'),
-    path('foods/', FoodView.as_view(), name='foods'),
-    path('orders/', OrderView.as_view(), name='orders'),
+    path('categories/', CategoryAPIView.as_view(), name='foodtype-list'),
+    path('foods/', FoodAPIView.as_view(), name='food-list'),
+    path('comments/', CommentAPIView.as_view(), name='comment-list'),
 ]

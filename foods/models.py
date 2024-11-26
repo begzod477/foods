@@ -18,12 +18,11 @@ class Food(models.Model):
     def __str__(self):
         return self.name
 
-class Orders(models.Model):
-    customer_name = models.CharField(max_length=22, verbose_name='buyurtmachi nomi')
-    food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name="orders", verbose_name='qaysi ovqatga buyurtmai')
-    quantity = models.PositiveIntegerField(verbose_name='miqdori')
-    order_date = models.DateTimeField(auto_now_add=True, verbose_name='buyurtma vaqti')
+class Comment(models.Model):
+    text = models.TextField(verbose_name='izoh')
+    food = models.ForeignKey(Food, on_delete=models.CASCADE, related_name="comments", verbose_name='qaysi ovqatga izoh')
+    author = models.CharField(max_length=22, verbose_name='izhoh yozganni ismi')
+    created = models.DateTimeField(auto_now_add=True, verbose_name='yozilgan vaqti')
 
     def __str__(self):
-        return self.customer_name
-
+        return f"Comment by {self.author} on {self.food}"
