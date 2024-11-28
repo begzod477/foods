@@ -1,4 +1,4 @@
-from rest_framework.generics import GenericAPIView, ListAPIView
+from rest_framework.generics import GenericAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.mixins import ListModelMixin, CreateModelMixin
 from rest_framework.permissions import IsAuthenticated
 from .models import Category, Food, Comment
@@ -17,6 +17,10 @@ class CategoryAPIView(GenericAPIView, ListModelMixin, CreateModelMixin):
         return self.create(request, *args, **kwargs)
     
 class FoodAPIView(ListAPIView): 
+    queryset = Food.objects.all()
+    serializer_class = FoodSerializer
+
+class FoodDetailApiView(RetrieveAPIView):
     queryset = Food.objects.all()
     serializer_class = FoodSerializer
 
