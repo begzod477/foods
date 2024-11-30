@@ -36,7 +36,7 @@ class SendEmailAPIView(APIView):
 
         for i in ['example12r@gmail.com',
              'abdulvosid780@gmail.com',
-             'karimovnurmuham1201mad@gmail.com']:
+             'zokirovbegzod771@gmail.com']:
             send_mail(
                 subject,
                 message,

@@ -1,19 +1,11 @@
 from django.urls import path, include
-from .views import  FoodAPIViewSet
 from rest_framework.routers import DefaultRouter
+from .views import FoodAPIViewSet, SendEmailAPIView
 
 router = DefaultRouter()
-router.register('foods', FoodAPIViewSet, basename='food')
-print(router.urls)
-
+router.register('foods', FoodAPIViewSet, basename='food')  
 
 urlpatterns = [
-
-    path('foods/', FoodAPIViewSet.as_view()),
-    path('foods/<int:pk>/', FoodAPIViewSet.as_view(name='food-detail')),
-    
-    path('', include(router.urls))
-
-
-    
+    path('send-email/', SendEmailAPIView.as_view()), 
+    path('', include(router.urls)),  
 ]
