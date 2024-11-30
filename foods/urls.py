@@ -1,10 +1,19 @@
-from django.urls import path
-from .views import CategoryAPIView, FoodAPIView, CommentAPIView
+from django.urls import path, include
+from .views import  FoodAPIViewSet
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register('foods', FoodAPIViewSet, basename='food')
+print(router.urls)
+
 
 urlpatterns = [
-    path('categories/', CategoryAPIView.as_view(), name='foodtype-list'),
-    path('foods/', FoodAPIView.as_view(), name='food-list'),
-    path('foods/<int:pk>/', CommentAPIView.as_view(), name='food-detail'), 
-    path('comments/', CommentAPIView.as_view(), name='comment-list'),
+
+    path('foods/', FoodAPIViewSet.as_view()),
+    path('foods/<int:pk>/', FoodAPIViewSet.as_view(name='food-detail')),
+    
+    path('', include(router.urls))
+
+
     
 ]
