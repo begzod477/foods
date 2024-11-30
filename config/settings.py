@@ -128,11 +128,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_CLASSES': [
-        'rest_framework.throttling.UserRateThrottle',  
+        'rest_framework.throttling.UserRateThrottle',
         'rest_framework.throttling.AnonRateThrottle',
     ],
     'DEFAULT_THROTTLE_RATES': {
-        'food': '10/minute',  
+        'user': '100/hour', 
+        'anon': '10/minute',
+        'food': '20/minute',  
     },
 }
 
