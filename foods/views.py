@@ -8,6 +8,13 @@ from .permissions import IsAdminOrReadOnly
 from rest_framework.viewsets import ViewSet, ModelViewSet
 from rest_framework import throttling
 from rest_framework.throttling import UserRateThrottle
+from .serializers import FoodSerializer, EmailSerializer
+from rest_framework.views import APIView
+from django.core.mail import send_mail
+from config.settings import EMAIL_HOST_USER
+from rest_framework.response import Response
+
+
 
 
 class FoodAPIViewSet(ModelViewSet): 
@@ -19,6 +26,25 @@ class FoodAPIViewSet(ModelViewSet):
     def get_queryset(self):
         return Food.objects.all()
   
+class SendEmailAPIView(APIView):
+    def post(self, request):
+        serializer = EmailSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        subject = serializer.validated_data.get("subject")
+        message = serializer.validated_data.get("message")
+
+        for i in ['madrahimovq@gmail.com', 'shunchakiabdujabbor@gmail.com',
+             'abdulvosid780@gmail.com',
+             'karimovnurmuham1201mad@gmail.com']:
+            send_mail(
+                subject,
+                message,
+                EMAIL_HOST_USER,
+                [i]
+            )
+
+        return Response("Yuborildi!!!")
+
 
 
 

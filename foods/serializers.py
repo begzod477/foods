@@ -20,3 +20,8 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
         fields = '__all__'
+
+class EmailSerializer(serializers.Serializer):
+    subject = serializers.CharField(max_length=150)
+    message = serializers.CharField()
+
