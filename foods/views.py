@@ -14,13 +14,14 @@ from django.core.mail import send_mail
 from config.settings import EMAIL_HOST_USER
 from rest_framework.response import Response
 
+class FoodThrottling(throttling.UserRateThrottle):
+    scope = 'food'
 
 
 
 class FoodAPIViewSet(ModelViewSet): 
     serializer_class = FoodSerializer
     thorttle_scope = 'food'
-    throttle_classes = [UserRateThrottle] 
 
 
     def get_queryset(self):
@@ -33,7 +34,7 @@ class SendEmailAPIView(APIView):
         subject = serializer.validated_data.get("subject")
         message = serializer.validated_data.get("message")
 
-        for i in ['madrahimovq@gmail.com', 'shunchakiabdujabbor@gmail.com',
+        for i in ['example12r@gmail.com',
              'abdulvosid780@gmail.com',
              'karimovnurmuham1201mad@gmail.com']:
             send_mail(
