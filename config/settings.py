@@ -136,6 +136,11 @@ REST_FRAMEWORK = {
         'anon': '10/minute',
         'food': '20/minute',  
     },
+
+    'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 2,
+     
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
